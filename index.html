@@ -3,231 +3,393 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人主页</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "微软雅黑", sans-serif;
-        }
-        body {
-            background-color: #f5f5f5;
-        }
-        /* 顶部导航栏 */
-        .top-nav {
-            background-color: #e0f7fa;
-            padding: 20px 0;
-            text-align: center;
-        }
-        .top-nav a {
-            color: #00796b;
-            text-decoration: none;
-            margin: 0 25px;
-            font-size: 16px;
-        }
-        .top-nav a:hover {
-            color: #004d40;
-        }
-        /* 主体容器 */
-        .container {
-            display: flex;
-            width: 1200px;
-            margin: 20px auto;
-        }
-        /* 左侧侧边栏 */
-        .sidebar {
-            width: 200px;
-            background-color: #fff;
-            padding: 20px;
-            text-align: center;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .avatar {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 10px;
-        }
-        .avatar img {
-            width: 100%;
-            border-radius: 50%;
-        }
-        .username {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .motto {
-            font-size: 12px;
-            color: #666;
-            margin-bottom: 15px;
-        }
-        .info {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .info span {
-            font-size: 12px;
-            padding: 3px 8px;
-            border-radius: 3px;
-            background-color: #e0f2f1;
-        }
-        .sidebar-nav {
-            margin-top: 20px;
-        }
-        .sidebar-nav a {
-            display: block;
-            color: #333;
-            text-decoration: none;
-            padding: 10px 0;
-            font-size: 14px;
-        }
-        .sidebar-nav a:hover, .sidebar-nav a.active {
-            color: #00796b;
-            background-color: #e0f7fa;
-        }
-        /* 右侧内容区 */
-        .content {
-            flex: 1;
-            margin-left: 20px;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .breadcrumbs {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 20px;
-        }
-        .breadcrumbs a {
-            color: #00796b;
-            text-decoration: none;
-        }
-        /* 卡片区域 */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-        .card {
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 4px;
-            text-align: center;
-        }
-        .card h3 {
-            font-size: 28px;
-            margin-bottom: 10px;
-            line-height: 1.2;
-        }
-        .card p {
-            font-size: 12px;
-            color: #666;
-            margin-bottom: 15px;
-        }
-        .card-img {
-            width: 100px;
-            height: 120px;
-            margin: 0 auto;
-        }
-        .card-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-    </style>
+    <title>晓灶的个人博客 记录生活与成长</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- 字体图标 -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/remixicon/3.5.0/remixicon.min.css">
+    <!-- 谷歌字体（提升排版质感） -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- 粒子背景（新增动态装饰） -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
 </head>
 <body>
-    <!-- 顶部导航 -->
-    <div class="top-nav">
-        <a href="#">个人首页</a>
-        <a href="#">生活瞬间</a>
-        <a href="#">学习记录</a>
-        <a href="#">学校生活</a>
-        <a href="#">规划人生</a>
-        <a href="#">旅行打卡</a>
-        <a href="#">访客留言</a>
+    <!-- 粒子背景容器（新增） -->
+    <div id="particles-js"></div>
+    <!-- 雪花容器 -->
+    <div id="snow-container"></div>
+
+    <!-- 顶部通知栏（新增） -->
+    <div class="top-notice">
+        <div class="container">
+            <p><i class="ri-star-smile-line"></i> 欢迎来到晓灶的小世界</p>
+        </div>
     </div>
 
-    <!-- 主体容器 -->
-    <div class="container">
-        <!-- 左侧侧边栏 -->
-        <div class="sidebar">
-            <div class="avatar">
-                <img src="https://img.icons8.com/fluency/96/000000/pig.png" alt="头像">
+    <!-- 导航栏（升级） -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="#"><i class="ri-pen-nib-line"></i> 晓灶的博客</a>
             </div>
-            <div class="username">小猪猪</div>
-            <div class="motto">没有什么是一顿饭解决不了的</div>
-            <div class="info">
-                <span>男</span>
-                <span>20岁</span>
-                <span>狮子座</span>
-            </div>
-            <div class="sidebar-nav">
-                <a href="#">个人首页</a>
-                <a href="#">生活瞬间</a>
-                <a href="#">学习记录</a>
-                <a href="#">学校生活</a>
-                <a href="#" class="active">规划人生</a>
-                <a href="#">旅行打卡</a>
-                <a href="#">访客留言</a>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active"><i class="fas fa-home"></i> 首页</a></li>
+                <li><a href="#about" class="nav-link"><i class="fas fa-user"></i> 关于我</a></li>
+                <li><a href="#blog" class="nav-link"><i class="fas fa-book"></i> 爱好分享</a></li>
+                <li><a href="#gallery" class="nav-link"><i class="fas fa-images"></i> 剧照集</a></li>
+                <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> 联系我</a></li>
+            </ul>
+            <!-- 移动端菜单按钮（新增） -->
+            <div class="mobile-menu-btn">
+                <i class="ri-menu-line"></i>
             </div>
         </div>
+    </nav>
 
-        <!-- 右侧内容区 -->
-        <div class="content">
-            <div class="breadcrumbs">
-                <a href="#">个人首页</a> > 规划人生
-            </div>
-            <div class="card-grid">
-                <div class="card">
-                    <h3 style="color: #ff7043;">奖励<br>自己</h3>
-                    <p>完成一个小目标后，<br>可以给自己适当奖励</p>
-                    <div class="card-img">
-                        <img src="https://img.icons8.com/fluency/96/000000/flower-in-vase.png" alt="花">
-                    </div>
+    <!-- 横幅（大幅升级） -->
+    <section id="home" class="banner">
+        <div class="container">
+            <div class="banner-content">
+                <h1 class="banner-title">
+                    <span class="title-line">23级数据科学与大数据3班</span>
+                    <span class="title-line">23170403008 杨晓灶</span>
+                </h1>
+                <p class="banner-subtitle">贵州中医药大学时珍学院 </p>
+                <div class="banner-btns">
+                    <a href="#blog" class="btn primary-btn">查看我的博客</a>
+                    <a href="#gallery" class="btn secondary-btn"><i class="ri-image-line"></i> 剧照集</a>
                 </div>
-                <div class="card">
-                    <h3 style="color: #43a047;">规律<br>作息</h3>
-                    <p>调整作息节奏和生活占比，<br>保持充足的体力</p>
-                    <div class="card-img">
-                        <img src="https://img.icons8.com/fluency/96/000000/plant-in-pot.png" alt="植物">
-                    </div>
-                </div>
-                <div class="card">
-                    <h3 style="color: #9c27b0;">保持<br>专注</h3>
-                    <p>尽量一次只做一件事，<br>一段时间内只专注一件事</p>
-                    <div class="card-img">
-                        <img src="https://img.icons8.com/fluency/96/000000/purple-flowers.png" alt="紫花">
-                    </div>
-                </div>
-                <div class="card">
-                    <h3 style="color: #e91e63;">拆解<br>任务</h3>
-                    <p>将大任务分解成<br>若干小的独立任务，<br>会更有节奏感</p>
-                    <div class="card-img">
-                        <img src="https://img.icons8.com/fluency/96/000000/cherry-blossom.png" alt="樱花">
-                    </div>
-                </div>
-                <div class="card">
-                    <h3 style="color: #ff7043;">克服<br>拖延</h3>
-                    <p>根据偏好制定事件计划，<br>历史时间内多个完成</p>
-                    <div class="card-img">
-                        <img src="https://img.icons8.com/fluency/96/000000/colorful-flowers.png" alt="多彩花">
-                    </div>
-                </div>
-                <div class="card">
-                    <h3 style="color: #43a047;">先易<br>后难</h3>
-                    <p>不要想一口气做完，<br>从小事做起，量力而行</p>
-                    <div class="card-img">
-                        <img src="https://img.icons8.com/fluency/96/000000/flower-bouquet.png" alt="花束">
-                    </div>
+                <!-- 装饰元素（新增） -->
+                <div class="banner-decor">
+                    <span class="decor-dot"></span>
+                    <span class="decor-dot"></span>
+                    <span class="decor-dot"></span>
                 </div>
             </div>
         </div>
+    </section>
+
+    <!-- 关于我（升级） -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-icon"><i class="ri-user-heart-line"></i></span>
+                关于我
+            </h2>
+            <div class="about-content">
+                <div class="avatar-box">
+                    <div class="avatar">
+                        <img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.sg3y4ReSjQxWUzGYvBYPLAHaG0?w=222&h=204&c=7&r=0&o=7&cb=ucfimg2&dpr=1.5&pid=1.7&rm=3&ucfimg=1" alt="个人头像">
+                        <!-- 头像装饰（新增） -->
+                        <div class="avatar-border"></div>
+                    </div>
+                    <!-- 个人标签（新增） -->
+                    <div class="tag-list">
+                        <span class="tag"><i class="ri-tv-line"></i> 追剧达人</span>
+                        <span class="tag"><i class="ri-internet-line"></i> 网虫</span>
+                        <span class="tag"><i class="ri-emotion-happy-line"></i> 摆烂选手</span>
+                    </div>
+                </div>
+                <div class="intro">
+                    <h3 class="intro-title">莫西莫西 我是晓灶 <span class="wave">👋</span></h3>
+                    <div class="intro-text">
+                        <p>我是一个有点好吃懒做的女生，每天喜欢在互联网上扮演阴沟里的老鼠</p>
+                        <p>平时最喜欢追剧，目前正在追《唐朝诡事录之长安》《狙击玫瑰》。其中唐朝诡事录着重表扬，真的是非常好看，目前已经出了三部，12月17号就要播出第四部了，推荐大家都去看看！</p>
+                        <p>《唐朝诡事录》作为一部古代探案悬疑剧，凭借人物的奇谲、案件的奇诡和视效的奇观等特征，整体呈现出一种情与理相合、奇与真相融的创作风格，可谓奇异想象赋能类型创新的一次探索。</p>
+                    </div>
+                    <!-- 追剧清单（新增） -->
+                    <div class="drama-list">
+                        <h4 class="list-title"><i class="ri-movie-line"></i> 我的追剧清单</h4>
+                        <ul>
+                            <li><span class="drama-name">《唐朝诡事录》系列</span> <span class="status">已追3部 | 待追第4部</span></li>
+                            <li><span class="drama-name">《狙击蝴蝶》</span> <span class="status">更新中</span></li>
+                            <li><span class="drama-name">《魔法公主的小烦恼》</span> <span class="status">更新中</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 博客文章（升级） -->
+    <section id="blog" class="blog">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-icon"><i class="ri-book-open-line"></i></span>
+                爱好分享
+            </h2>
+            <!-- 分类标签（新增） -->
+            <div class="blog-filter">
+                <button class="filter-btn active" data-filter="all">全部</button>
+                <button class="filter-btn" data-filter="唐朝诡事录">唐朝诡事录</button>
+                <button class="filter-btn" data-filter="悬疑">悬疑剧</button>
+                <button class="filter-btn" data-filter="观后感">观后感</button>
+            </div>
+            <div class="blog-cards">
+                <div class="blog-card" data-category="唐朝诡事录 悬疑">
+                    <div class="card-img">
+                        <img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.achJWDjZOz9a_t6WCCUx1gHaD4?w=319&h=180&c=7&r=0&o=7&cb=ucfimg2&dpr=1.5&pid=1.7&rm=3&ucfimg=1" alt="文章封面">
+                        <!-- 卡片标签（新增） -->
+                        <span class="card-tag">黄梅杀</span>
+                    </div>
+                    <div class="card-content">
+                        <span class="date"><i class="ri-calendar-line"></i> “黄梅杀”</span>
+                        <h3>《唐朝诡事录》————“黄梅杀”</h3>
+                        <p>该单元被不少观众评为系列中 “最意难平” 的案件，核心魅力在于对人性中猜忌与贪婪的极致刻画。案件以独孤遐叔备考为切入点，江洋大盗吉祥因贪名贪色设下毒计...</p>
+                        <a href="#" class="read-more">阅读更多 <i class="ri-arrow-right-line"></i></a>
+                    </div>
+                </div>
+                <div class="blog-card" data-category="唐朝诡事录 悬疑">
+                    <div class="card-img">
+                        <img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.4CfI1YzD4jXR0m-o0fA3SgHaF-?w=179&h=181&c=7&r=0&o=7&cb=ucfimg2&dpr=1.5&pid=1.7&rm=3&ucfimg=1" alt="文章封面">
+                        <span class="card-tag">仵作之死</span>
+                    </div>
+                    <div class="card-content">
+                        <span class="date"><i class="ri-calendar-line"></i> “仵作之死”</span>
+                        <h3>《唐朝诡事录之西行》————“仵作之死”</h3>
+                        <p>作为仵作世家后人，独孤羊面对 “仵作之子不能科考” 的时代枷锁，依旧秉持 “为死者言，为生者权” 的信条，最终为守护家传的独孤印信和职业底线赴死...</p>
+                        <a href="#" class="read-more">阅读更多 <i class="ri-arrow-right-line"></i></a>
+                    </div>
+                </div>
+                <div class="blog-card" data-category="唐朝诡事录 悬疑">
+                    <div class="card-img">
+                        <img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.s6mMYhdTbZ00vcu5CRHsygG7FK?w=232&h=180&c=7&r=0&o=7&cb=ucfimg2&dpr=1.5&pid=1.7&rm=3&ucfimg=1" alt="文章封面">
+                        <span class="card-tag">去天尺五</span>
+                    </div>
+                    <div class="card-content">
+                        <span class="date"><i class="ri-calendar-line"></i> “去天尺五”</span>
+                        <h3>《唐朝诡事录之长安》————“去天尺五”</h3>
+                        <p>巧妙化用唐代 “城南韦杜，去天尺五” 的历史谚语，以韦、杜两大世家的故事为载体，深入挖掘士族精神与家国大义。剧情中杜橘娘这一女性角色极具魅力...</p>
+                        <a href="#" class="read-more">阅读更多 <i class="ri-arrow-right-line"></i></a>
+                    </div>
+                </div>
+                <div class="blog-card" data-category="唐朝诡事录 观后感">
+                    <div class="card-img">
+                        <img src="https://tse1-mm.cn.bing.net/th/id/OIP-C.s4yz6SxBXgVYMlsW_EcXYgG3FK?w=266&h=200&c=7&r=0&o=7&cb=ucfimg2&dpr=1.5&pid=1.7&rm=3&ucfimg=1" alt="文章封面">
+                        <span class="card-tag">诺皋记</span>
+                    </div>
+                    <div class="card-content">
+                        <span class="date"><i class="ri-calendar-line"></i> “诺皋记”</span>
+                        <h3>《唐朝诡事录之长安》————“诺皋记”</h3>
+                        <p>案件表面是 “琵琶女红药周旋五男” 的情杀谜案，实则是跨度 19 年的复仇大计，三层反转设计让观众直呼 “头皮发麻”。红药与孟不疑 “表面怨侣、实则同心” 的设定极具感染力...</p>
+                        <a href="#" class="read-more">阅读更多 <i class="ri-arrow-right-line"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- 加载更多按钮（新增） -->
+            <div class="load-more">
+                <button class="btn load-btn"><i class="ri-refresh-line"></i> 加载更多</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 剧照集（新增板块） -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-icon"><i class="ri-image-fill"></i></span>
+                剧照集
+            </h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.GH_gTnfVmEOjRJoEuMcaQQHaF-?w=192&h=180&c=7&r=0&o=7&cb=ucfimg2&dpr=1.5&pid=1.7&rm=3&ucfimg=1" alt="唐诡 卢凌风 苏无名">
+                    <div class="gallery-overlay">
+                        <h4>唐诡 卢凌风 苏无名</h4>
+                        <p>《唐朝诡事录》宣传照片</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.fngaK2mHBC2WDs_mZmBxVwHaEK?w=316&h=180&c=7&r=0&o=7&cb=ucfimg2&dpr=1.5&pid=1.7&rm=3&ucfimg=1" alt="唐诡 喜君 樱桃">
+                    <div class="gallery-overlay">
+                        <h4>唐诡 喜君 樱桃</h4>
+                        <p>《唐朝诡事录》宣传照片</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.-BbFMwQN7t1ZoCODuf0zMQAAAA?w=262&h=180&c=7&r=0&o=7&cb=ucfimg2&dpr=1.5&pid=1.7&rm=3&ucfimg=1" alt="狙击蝴蝶 岑矜 李雾">
+                    <div class="gallery-overlay">
+                        <h4>岑矜 李雾</h4>
+                        <p>《狙击蝴蝶》宣传照</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.du_04E7BZC_OuVgAldTyoAHaGN?w=220&h=184&c=7&r=0&o=7&cb=ucfimg2&dpr=1.5&pid=1.7&rm=3&ucfimg=1" alt="狙击蝴蝶 岑矜 李雾">
+                    <div class="gallery-overlay">
+                        <h4>岑矜 李雾</h4>
+                        <p>《狙击蝴蝶》宣传照</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.J3N3bUQY3dtqnBVqMjCvewHaEo?w=202&h=126&c=7&r=0&o=7&cb=ucfimg2&dpr=1.5&pid=1.7&rm=3&ucfimg=1" alt="克劳德 希娅">
+                    <div class="gallery-overlay">
+                        <h4>克劳德 希娅</h4>
+                        <p>《某天成为公主》剧照</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.A-jmz4Fx4w9asb0ra20eCQHaE4?w=202&h=133&c=7&r=0&o=7&cb=ucfimg2&dpr=1.5&pid=1.7&rm=3&ucfimg=1" alt="卢卡斯 希娅">
+                    <div class="gallery-overlay">
+                        <h4>卢卡斯 希娅</h4>
+                        <p>《某天成为公主》剧照</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我（升级） -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-icon"><i class="ri-message-3-line"></i></span>
+                联系我
+            </h2>
+            <div class="contact-wrapper">
+                <!-- 联系信息（新增） -->
+                <div class="contact-info">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="ri-mail-line"></i>
+                        </div>
+                        <h4>邮箱</h4>
+                        <p>3526669108@qq.com</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="ri-wechat-line"></i>
+                        </div>
+                        <h4>微信</h4>
+                        <p>xiao20170631</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="ri-qq-line"></i>
+                        </div>
+                        <h4>QQ</h4>
+                        <p>3526669108</p>
+                    </div>
+                    <!-- 二维码占位（新增） -->
+                    <div class="qrcode-card">
+                        <img src="https://tse1-mm.cn.bing.net/th/id/OIP-C.7FCIkez_N-guFgBGgDA3gQHaF3?w=185&h=180&c=7&r=0&o=7&cb=ucfimg2&dpr=1.5&pid=1.7&rm=3&ucfimg=1" alt="微信二维码" class="qrcode">
+                        <p>扫码加我好友～</p>
+                    </div>
+                </div>
+                <!-- 表单区域 -->
+                <div class="contact-form">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">姓名</label>
+                                <input type="text" id="name" placeholder="请输入你的姓名" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">邮箱</label>
+                                <input type="email" id="email" placeholder="请输入你的邮箱" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">留言主题</label>
+                            <select id="subject" required>
+                                <option value="">请选择主题</option>
+                                <option value="追剧交流">追剧交流</option>
+                                <option value="博客建议">博客建议</option>
+                                <option value="其他">其他</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">留言内容</label>
+                            <textarea id="message" rows="5" placeholder="想说的话可以在这里告诉我～" required></textarea>
+                        </div>
+                        <!-- 验证码（新增） -->
+                        <div class="form-row verify-row">
+                            <div class="form-group verify-group">
+                                <label for="verify">验证码</label>
+                                <input type="text" id="verify" placeholder="请输入右侧验证码" required>
+                            </div>
+                            <div class="verify-code">8697</div>
+                        </div>
+                        <button type="submit" class="submit-btn"><i class="ri-send-plane-line"></i> 发送留言</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚（升级） -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-col">
+                    <h4><i class="ri-pen-nib-line"></i> 晓灶的博客</h4>
+                    <p>记录追剧日常，分享生活点滴</p>
+                    <!-- 社交图标（新增） -->
+                    <div class="social-links">
+                        <a href="#"><i class="ri-weibo-fill"></i></a>
+                        <a href="#"><i class="ri-wechat-fill"></i></a>
+                        <a href="#"><i class="ri-qq-fill"></i></a>
+                        <a href="#"><i class="ri-bilibili-fill"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>快速导航</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#about">关于我</a></li>
+                        <li><a href="#blog">爱好分享</a></li>
+                        <li><a href="#gallery">剧照集</a></li>
+                        <li><a href="#contact">联系我</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>追剧推荐</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">《唐朝诡事录》系列</a></li>
+                        <li><a href="#">《狙击玫瑰》</a></li>
+                        <li><a href="#">《繁城之下》</a></li>
+                        <li><a href="#">《长安十二时辰》</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 晓灶的个人博客 | 博客尚有不足之处，请多多见谅</p>
+                <p style="margin-top: 8px; font-size: 0.9rem; opacity: 0.8;">愿生活如蓝调般温柔，如星星般浪漫</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮（新增） -->
+    <div class="back-to-top">
+        <i class="ri-arrow-up-line"></i>
     </div>
+
+    <script src="script.js"></script>
+    <!-- 粒子背景初始化（新增） -->
+    <script>
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: '#87CEEB' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: '#87CEEB', opacity: 0.2, width: 1 },
+                move: { enable: true, speed: 1, direction: 'none', random: true, straight: false, out_mode: 'out', bounce: false }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: { enable: true, mode: 'grab' },
+                    onclick: { enable: true, mode: 'push' },
+                    resize: true
+                },
+                modes: {
+                    grab: { distance: 140, line_linked: { opacity: 0.5 } },
+                    push: { particles_nb: 4 }
+                }
+            },
+            retina_detect: true
+        });
+    </script>
 </body>
 </html>
